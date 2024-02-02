@@ -7,7 +7,5 @@ project(simple-pubsub-broker)
 find_package(fmt CONFIG REQUIRED)
 find_package(GTest CONFIG REQUIRED)
 
-add_subdirectory(src/broker)
-add_subdirectory(src/publisher)
-add_subdirectory(src/subscriber)
+add_subdirectory(src)
 add_subdirectory(test)
