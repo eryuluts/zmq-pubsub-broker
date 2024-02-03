@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package test_models;
+
+message ExamplePayload
+{
+  string name = 1;
+}

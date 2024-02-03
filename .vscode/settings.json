@@ -1,0 +1,11 @@
+{
+    "formatFiles.extensionsToInclude": "{.proto,.hpp,.cpp}",
+    "formatFiles.excludedFolders": [
+        "node_modules",
+        ".vscode",
+        ".git",
+        "dist",
+        ".chrome",
+        "build"
+    ]
+}

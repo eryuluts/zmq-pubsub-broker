@@ -1,0 +1,12 @@
+---
+Language: Cpp
+BasedOnStyle: LLVM
+IndentWidth: 4
+SortIncludes: false
+BreakBeforeBraces: Allman
+ColumnLimit: 100
+---
+Language: Proto
+BasedOnStyle: Google
+BreakBeforeBraces: Allman
+ColumnLimit: 100

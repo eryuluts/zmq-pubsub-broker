@@ -1,6 +1,6 @@
-#include <fmt/format.h>
+#include "subscriber.hpp"
 
-int main()
+namespace pubsubservice
 {
-    fmt::println("subscriber");
-}
+void Subscriber::subscribe(std::string topic, topic_handler handler) { handler("test"); }
+} // namespace pubsubservice
