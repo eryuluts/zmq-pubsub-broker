@@ -2,12 +2,15 @@ add_executable(broker broker.cpp)
 target_link_libraries(broker
     PRIVATE
         fmt::fmt
+        pubsubservice_models
 )
 
-add_executable(publisher publisher.cpp)
+add_library(publisher publisher.cpp)
 target_link_libraries(publisher
     PRIVATE
         fmt::fmt
+        pubsubservice_models
+        cppzmq
 )
 
 add_library(subscriber subscriber.cpp)
@@ -15,4 +18,5 @@ target_link_libraries(subscriber
     PRIVATE
         fmt::fmt
         pubsubservice_models
+        cppzmq
 )

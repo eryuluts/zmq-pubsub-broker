@@ -2,6 +2,7 @@
     "dependencies": [
         "fmt",
         "gtest",
+        "cppzmq",
         "protobuf"
     ]
 }

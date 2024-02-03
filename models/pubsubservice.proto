@@ -6,5 +6,5 @@ package pubsubservice;
 
 message Publication
 {
-  google.protobuf.Any payload = 1;
+  google.protobuf.Any payload = 2;
 }

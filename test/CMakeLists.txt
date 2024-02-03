@@ -16,6 +16,7 @@ target_link_libraries(${TARGET_NAME}
         GTest::gtest
         GTest::gtest_main
         subscriber
+        publisher
         pubsubservice_models
         test_models
 )

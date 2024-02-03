@@ -15,6 +15,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(fmt CONFIG REQUIRED)
 find_package(GTest CONFIG REQUIRED)
 find_package(Protobuf CONFIG REQUIRED)
+find_package(cppzmq CONFIG REQUIRED)
 
 add_subdirectory(src)
 add_subdirectory(test)
