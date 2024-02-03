@@ -1,10 +1,11 @@
 #pragma once
 #include <string>
 #include <functional>
+#include "pubsubservice.pb.h"
 
 namespace pubsubservice
 {
-using topic_handler = std::function<void(std::string)>;
+using topic_handler = std::function<void(pubsubservice::Publication)>;
 
 class Subscriber
 {

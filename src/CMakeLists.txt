@@ -14,5 +14,5 @@ add_library(subscriber subscriber.cpp)
 target_link_libraries(subscriber
     PRIVATE
         fmt::fmt
-
+        pubsubservice_models
 )
