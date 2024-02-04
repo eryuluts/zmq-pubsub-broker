@@ -1,3 +1,5 @@
+/* SPDX-License-Identifier: MPL-2.0 */
+
 #include <gtest/gtest.h>
 #include <iostream>
 #include "pubsubservice.pb.h"
