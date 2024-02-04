@@ -64,9 +64,9 @@ void Subscriber::dispatch(zmq::multipart_t msg)
         throw std::runtime_error(fmt::format("topic: {}: can't parse received publication", topic));
     }
 
-    for (auto [k, handler] : m_topic_handlers)
+    for (auto [key, handler] : m_topic_handlers)
     {
-        if (k == topic)
+        if (topic.starts_with(key))
         {
             try
             {

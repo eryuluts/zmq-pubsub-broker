@@ -11,7 +11,7 @@ Publisher::Publisher(std::string addr)
     sock.bind(addr);
 }
 
-void Publisher::publish(std::string topic, const google::protobuf::Message& msg)
+void Publisher::publish(std::string topic, const google::protobuf::Message &msg)
 {
     pubsubservice::Publication pub;
     pub.mutable_payload()->PackFrom(msg);
