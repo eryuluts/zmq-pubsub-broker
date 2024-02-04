@@ -2,6 +2,8 @@
 
 #include <gtest/gtest.h>
 #include <iostream>
+#include <google/protobuf/util/message_differencer.h>
+
 #include "pubsubservice.pb.h"
 #include "test_models.pb.h"
 
@@ -22,25 +24,28 @@ TEST(TestPublicationMessage, test_conversion_to_any)
 
 TEST(TestSubscriber, test_publication)
 {
-    std::string test_topic{"test-topic"};
-    pubsubservice::Subscriber sub("tcp://localhost:5555");
-    pubsubservice::Publisher pub("tcp://lo:5555");
-
     using namespace std::literals::chrono_literals;
-    auto handler = [](auto publication)
+    std::string test_topic{"test-topic"};
+    std::string addr{"tcp://localhost:5555"};
+
+    test_models::ExamplePayload msg;
+    msg.set_name("test message");
+
+    std::atomic<int> counter{0};
+    auto handler = [&counter, msg](const pubsubservice::Publication &pub)
     {
-        pubsubservice::Publication msg;
-        publication.payload().UnpackTo(&msg);
-        std::cout << msg.DebugString();
+        counter++;
+        test_models::ExamplePayload recv_msg;
+        pub.payload().UnpackTo(&recv_msg);
+        EXPECT_TRUE(google::protobuf::util::MessageDifferencer().Equals(msg, recv_msg));
     };
 
+    pubsubservice::Subscriber sub(addr);
+    pubsubservice::Publisher pub(addr);
     sub.subscribe(test_topic, handler);
-    std::this_thread::sleep_for(1s);
+    std::this_thread::sleep_for(200ms); // wait for zeromq subscription to happen.
 
-    test_models::ExamplePayload ex_payload;
-    ex_payload.set_name("test message");
-    pubsubservice::Publication msg;
-    msg.mutable_payload()->PackFrom(ex_payload);
     pub.publish(test_topic, msg);
-    std::this_thread::sleep_for(1s);
+    std::this_thread::sleep_for(200ms); // wait message to be transmitted.
+    ASSERT_TRUE(counter == 1);
 }

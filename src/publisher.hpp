@@ -10,7 +10,7 @@ class Publisher
 {
   public:
     Publisher(std::string addr);
-    void publish(std::string topic, Publication msg);
+    void publish(std::string topic, const google::protobuf::Message& msg);
 
   private:
     zmq::context_t ctx;

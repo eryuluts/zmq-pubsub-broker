@@ -15,12 +15,6 @@ target_link_libraries(${TARGET_NAME}
     PRIVATE
         GTest::gtest
         GTest::gtest_main
-        subscriber
-        publisher
-        pubsubservice_models
+        pubsubservice_interface
         test_models
-)
-target_include_directories(${TARGET_NAME}
-    PRIVATE
-        ${CMAKE_SOURCE_DIR}/src
 )

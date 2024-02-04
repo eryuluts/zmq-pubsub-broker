@@ -10,7 +10,7 @@
 
 namespace pubsubservice
 {
-using topic_handler = std::function<void(pubsubservice::Publication)>;
+using topic_handler = std::function<void(const pubsubservice::Publication &)>;
 
 class Subscriber
 {
@@ -19,12 +19,12 @@ class Subscriber
     void subscribe(std::string topic, topic_handler handler);
 
   private:
-    std::unordered_multimap<std::string, topic_handler> topic_handlers;
+    std::unordered_multimap<std::string, topic_handler> m_topic_handlers;
     std::string m_addr;
 
-    zmq::context_t ctx;
-    zmq::socket_t sock;
-    std::jthread subscriber_thread;
+    zmq::context_t m_ctx;
+    zmq::socket_t m_sock;
+    std::jthread m_subscriber_thread;
     std::mutex m_lock;
     void subscriber_task();
     void dispatch(zmq::multipart_t msg);
